@@ -1,0 +1,10 @@
+:root {
+  --color-primary: #1a73e8;
+  --color-success: #28a745;
+  --color-error:   #dc3545;
+}
+
+@media (max-width: 1199px) { /* tablet-wide */ }
+@media (max-width:  991px) { /* tablet */ }
+@media (max-width:  767px) { /* phablet */ }
+@media (max-width:  575px) { /* mobile */ }
