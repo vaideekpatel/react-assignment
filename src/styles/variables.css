@@ -1,10 +1,25 @@
 :root {
   --color-primary: #1a73e8;
+  --color-secondary: #0052cc;
+  --color-bg: #ffffff;
+  --color-card: #f9fafb;
+  --color-border: #e5e7eb;
+  --color-error: #dc3545;
   --color-success: #28a745;
-  --color-error:   #dc3545;
+  --font-sans: 'Geist Mono', sans-serif;
+  --radius-base: 0.5rem;
+  --spacing-base: 1rem;
 }
 
-@media (max-width: 1199px) { /* tablet-wide */ }
-@media (max-width:  991px) { /* tablet */ }
-@media (max-width:  767px) { /* phablet */ }
-@media (max-width:  575px) { /* mobile */ }
+@media (max-width: 1199px) {
+  :root { --spacing-base: 0.875rem; }
+}
+@media (max-width: 991px) {
+  :root { --spacing-base: 0.75rem; }
+}
+@media (max-width: 767px) {
+  :root { --spacing-base: 0.5rem; }
+}
+@media (max-width: 575px) {
+  :root { --spacing-base: 0.25rem; }
+}

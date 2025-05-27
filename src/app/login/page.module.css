@@ -1,0 +1,66 @@
+.container {
+  max-width: 24rem;
+  margin: var(--spacing-base) auto;
+  padding: calc(var(--spacing-base) * 1.5);
+  background-color: var(--color-bg);
+  border-radius: var(--radius-base);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  font-family: var(--font-sans);
+}
+
+.title {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-base);
+  color: var(--color-primary);
+}
+
+.formRow {
+  margin-bottom: var(--spacing-base);
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+}
+
+.error {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--color-error);
+}
+
+.button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: var(--color-secondary);
+}
+
+.link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
