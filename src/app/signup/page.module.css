@@ -1,12 +1,22 @@
+.pageWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f5f7fa; 
+}
+
 .container {
   max-width: 40rem;
-  margin: var(--spacing-base) auto;
+  width: 100%;
   padding: calc(var(--spacing-base) * 2);
-  background-color: var(--color-bg);
+  background-color: #ffffff; 
   border-radius: var(--radius-base);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   font-family: var(--font-sans);
+  margin: 0;
 }
+
 
 .title {
   font-size: 1.75rem;

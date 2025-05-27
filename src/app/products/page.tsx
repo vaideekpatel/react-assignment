@@ -17,7 +17,6 @@ export default function ProductsPage() {
   const fetchData = async () => {
     setLoading(true);
     setError(null);
-
     try {
       const skip = (page - 1) * limit;
       const data = await getProducts(skip, limit);
@@ -50,7 +49,7 @@ export default function ProductsPage() {
     return (
       <div className="text-center mt-12">
         <p className="text-red-600 mb-4">{error}</p>
-        <button onClick={fetchData} className={styles.pageBtn}>
+        <button onClick={fetchData} className={styles.retryBtn}>
           Retry
         </button>
       </div>
@@ -59,51 +58,57 @@ export default function ProductsPage() {
 
   const totalPages = Math.ceil(total / limit);
 
+  const getPageList = (current: number, total: number) => {
+    if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+    const pages: (number | string)[] = [1, 2];
+    if (current > 4) pages.push("...");
+    const start = Math.max(3, current - 1);
+    const end = Math.min(total - 2, current + 1);
+    for (let i = start; i <= end; i++) pages.push(i);
+    if (current < total - 3) pages.push("...");
+    pages.push(total - 1, total);
+    return pages;
+  };
+
   return (
     <div className={styles.container}>
-      <h1 className="text-3xl font-bold mb-6">Product Catalog</h1>
+      <h1 className={styles.heading}>Product Catalog</h1>
+
       <div className={styles.grid}>
         {products.map((p) => (
           <Link key={p.id} href={`/products/${p.id}`} className={styles.card}>
             <img src={p.thumbnail} alt={p.title} className={styles.thumbnail} />
             <div className={styles.cardBody}>
               <h2 className={styles.title}>{p.title}</h2>
-              <p className={styles.meta}>{p.brand}</p>
+              {/* <p className={styles.meta}>{p.brand}</p> */}
               <div className={styles.priceRow}>
                 <span className={styles.price}>${p.price}</span>
                 <span className={styles.discount}>-{p.discountPercentage}%</span>
               </div>
-              <p className={styles.rating}>⭐ {p.rating}</p>
+              <p className={styles.rating}>⭐ {p.rating.toFixed(2)}</p>
             </div>
           </Link>
         ))}
       </div>
+
       <div className={styles.pagination}>
-        <button
-          disabled={page === 1}
-          onClick={() => setPage((prev) => prev - 1)}
-          className={styles.pageBtn}
-        >
-          Prev
-        </button>
-        {Array.from({ length: totalPages }, (_, i) => (
-          <button
-            key={i}
-            onClick={() => setPage(i + 1)}
-            className={`${styles.pageBtn} ${
-              page === i + 1 ? styles.pageBtnActive : ""
-            }`}
-          >
-            {i + 1}
-          </button>
-        ))}
-        <button
-          disabled={page === totalPages}
-          onClick={() => setPage((prev) => prev + 1)}
-          className={styles.pageBtn}
-        >
-          Next
-        </button>
+        {getPageList(page, totalPages).map((p, idx) =>
+          typeof p === "number" ? (
+            <button
+              key={idx}
+              onClick={() => setPage(p)}
+              className={`${styles.pageBtn} ${
+                p === page ? styles.activeBtn : ""
+              }`}
+            >
+              {p}
+            </button>
+          ) : (
+            <span key={idx} className={styles.ellipsis}>
+              {p}
+            </span>
+          )
+        )}
       </div>
     </div>
   );

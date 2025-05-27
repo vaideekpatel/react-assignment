@@ -1,40 +1,53 @@
+.pageWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+}
+
 .container {
   max-width: 24rem;
-  margin: var(--spacing-base) auto;
+  width: 100%;
+  margin: 0; 
   padding: calc(var(--spacing-base) * 1.5);
-  background-color: var(--color-bg);
+  background-color: #ffffff;
   border-radius: var(--radius-base);
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   font-family: var(--font-sans);
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   color: var(--color-primary);
-  margin-bottom: var(--spacing-base);
+  margin: 0 0 var(--spacing-base) 0;
 }
 
-.formRow {
+.field {
+  display: flex;
+  flex-direction: column;
   margin-bottom: var(--spacing-base);
 }
 
 .label {
-  display: block;
   margin-bottom: 0.25rem;
   font-weight: 600;
+  color: var(--color-secondary);
 }
 
 .input {
+  box-sizing: border-box;
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.75rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-base);
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .input:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(26,115,232,0.2);
+  box-shadow: 0 0 0 4px rgba(26,115,232,0.15);
 }
 
 .error {
@@ -46,6 +59,7 @@
 .button {
   width: 100%;
   padding: 0.75rem;
+  margin-top: calc(var(--spacing-base) * 1.25);
   background-color: var(--color-primary);
   color: #fff;
   border: none;

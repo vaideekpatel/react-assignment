@@ -17,7 +17,6 @@ export default function ProductDetailPage() {
     if (!id) return;
     setLoading(true);
     setError(null);
-
     try {
       const data = await getProductById(Number(id));
       setProduct(data);
@@ -61,44 +60,50 @@ export default function ProductDetailPage() {
   if (!product) return null;
 
   return (
-    <div className={styles.container}>
-      <button onClick={() => router.back()} className={styles.backButton}>
-        ← Back
-      </button>
-      <h1 className={styles.title}>{product.title}</h1>
-      <p className={styles.meta}>
-        {product.category} — {product.brand}
-      </p>
-      <div className={styles.grid}>
-        <img
-          src={product.thumbnail}
-          alt={product.title}
-          className={styles.mainImage}
-        />
-        <div className={styles.detailBody}>
-          <p>{product.description}</p>
-          <div className={styles.detailRow}>
-            <span className={styles.label}>Price:</span>
-            <span className={styles.value}>${product.price}</span>
-          </div>
-          <div className={styles.detailRow}>
-            <span className={styles.label}>Discount:</span>
-            <span className={styles.value}>
-              {product.discountPercentage}%
-            </span>
-          </div>
-          <div className={styles.imagesRow}>
-            {product.images.map((img, idx) => (
-              <img
-                key={idx}
-                src={img}
-                alt={`${product.title} ${idx + 1}`}
-                className={styles.thumbnailSmall}
-              />
-            ))}
+    <div className={styles.pageWrapper}>
+      <main className={styles.container} aria-labelledby="product-heading">
+        <button onClick={() => router.back()} className={styles.backButton}>
+          Back
+        </button>
+
+        <h1 id="product-heading" className={styles.title}>
+          {product.title}
+        </h1>
+        <p className={styles.meta}>
+          {product.category} — {product.brand}
+        </p>
+
+        <div className={styles.grid}>
+          <img
+            src={product.thumbnail}
+            alt={product.title}
+            className={styles.mainImage}
+          />
+          <div className={styles.detailBody}>
+            <p>{product.description}</p>
+            <div className={styles.detailRow}>
+              <span className={styles.label}>Price:</span>
+              <span className={styles.value}>${product.price}</span>
+            </div>
+            <div className={styles.detailRow}>
+              <span className={styles.label}>Discount:</span>
+              <span className={styles.value}>
+                {product.discountPercentage}%
+              </span>
+            </div>
+            <div className={styles.imagesRow}>
+              {product.images.map((img, idx) => (
+                <img
+                  key={idx}
+                  src={img}
+                  alt={`${product.title} ${idx + 1}`}
+                  className={styles.thumbnailSmall}
+                />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
